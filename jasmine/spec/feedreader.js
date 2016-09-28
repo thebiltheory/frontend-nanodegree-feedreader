@@ -36,7 +36,7 @@ $(function() {
 			allFeeds.map(function(feed){
 			  expect(feed.url).toBeDefined();
 			  expect(feed.url).toMatch(/https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}/);
-			})
+		  });
 		 });
 
 
@@ -49,8 +49,8 @@ $(function() {
 		   allFeeds.map(function(feed) {
 			 expect(feed.name).toBeDefined();
 			 expect(feed.name).not.toBe('');
-		   })
-		 })
+		 });
+	 });
 	});
 
 
@@ -64,7 +64,7 @@ $(function() {
 		 * the CSS to determine how we're performing the
 		 * hiding/showing of the menu element.
 		 */
-		 var body = $('body')
+		 var body = $('body');
 		 it('is hidden by default', function(){
 		   expect(body.hasClass('menu-hidden')).toBe(true);
 		 });
@@ -97,16 +97,17 @@ $(function() {
 		 * Remember, loadFeed() is asynchronous so this test will require
 		 * the use of Jasmine's beforeEach and asynchronous done() function.
 		 */
-		 var feed = $('.feed');
+		 var feed;
 		 beforeEach(function(done){
 		   loadFeed(0, function() {
 			 done();
 		   });
 		 });
 		 it('has at least one entry', function(){
-		   expect(feed.length).toBeGreaterThan(0);
+			feed = $('.feed .entry');
+			expect(feed.length).toBeGreaterThan(0);
 		 });
-	 })
+	 });
 
 	/* Test suite named "New Feed Selection"*/
 	describe('New Feed Selection', function(){
